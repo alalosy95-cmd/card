@@ -1,1 +1,218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سعد | Portfolio</title>
+    <style>
+        /* Modern Minimalist Style by AI */
+        :root {
+            --primary-gold: #D4AF37; /* ذهبي مطفي فخم */
+            --bg-dark: #0f0f0f; /* أسود قاتم */
+            --card-bg: #1a1a1a; /* رمادي غامق جداً للأزرار */
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+        }
 
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #D4AF37 100%);
+            border-radius: 50%;
+            margin-bottom: 15px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--bg-dark);
+            border: 2px solid var(--primary-gold);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            margin: 5px 0 0 0;
+            opacity: 0.8;
+        }
+
+        .section-title {
+            text-align: right;
+            width: 100%;
+            max-width: 400px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin: 30px 0 10px 0;
+            padding-right: 5px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 12px;
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.2s ease-in-out;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid transparent;
+        }
+
+        .project-card:hover, .project-card:active {
+            transform: translateY(-2px);
+            border-color: rgba(212, 175, 55, 0.3);
+            background-color: #222;
+        }
+
+        .icon-box {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary-gold);
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .project-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .project-info h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .project-info p {
+            font-size: 0.85rem;
+            color: var(--text-gray);
+            margin: 3px 0 0 0;
+            line-height: 1.4;
+        }
+
+        .contact-btn {
+            background: var(--primary-gold);
+            color: #000;
+            width: 100%;
+            max-width: 400px;
+            padding: 16px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1rem;
+            transition: background 0.2s;
+        }
+
+        .contact-btn:hover {
+            background: #ebc556;
+        }
+
+        footer {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-header">
+        <div class="avatar">س</div>
+        <h1>سعد</h1>
+        <p class="subtitle">رائد أعمال | حلول تجارية وتقنية</p>
+    </div>
+
+    <div class="section-title">التجارة والخدمات</div>
+    
+    <a href="#" class="project-card">
+        <div class="icon-box">📦</div>
+        <div class="project-info">
+            <h3>موج العلوم لتجارة الجلود</h3>
+            <p>توريد الجلود الصناعية والمستلزمات التجارية</p>
+        </div>
+    </a>
+
+    <a href="#" class="project-card">
+        <div class="icon-box">🏠</div>
+        <div class="project-info">
+            <h3>رواق للستائر</h3>
+            <p>حلول متكاملة لتفصيل وصيانة الستائر</p>
+        </div>
+    </a>
+
+    <div class="section-title">الجانب الإبداعي والتقني</div>
+
+    <a href="#" class="project-card">
+        <div class="icon-box">❓</div>
+        <div class="project-info">
+            <h3>سين جيم</h3>
+            <p>تطوير ألعاب ذكاء ومسابقات تفاعلية</p>
+        </div>
+    </a>
+
+    <a href="#" class="project-card">
+        <div class="icon-box">📱</div>
+        <div class="project-info">
+            <h3>حلول NFC الذكية</h3>
+            <p>برمجة كروت الأعمال والهوية الرقمية</p>
+        </div>
+    </a>
+
+    <a href="https://wa.me/YOURNUMBER" class="contact-btn">
+        <span>💬</span> حفظ جهة الاتصال / واتساب
+    </a>
+
+    <footer>Powered by GitHub Pages &copy; 2026</footer>
+
+</body>
+</html>
