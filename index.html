@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صالح | توريد جلود وتنجيد</title>
     <style>
-        /* تعريف الألوان للوضعين */
         :root {
             --primary-gold: #D4AF37;
             --bg: #0f0f0f;
@@ -35,31 +34,20 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            padding-bottom: 50px;
             overflow-x: hidden;
         }
 
-        /* زر التبديل */
         .theme-toggle {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: var(--card-bg);
-            border: 1px solid var(--primary-gold);
-            color: var(--primary-gold);
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: absolute; top: 20px; left: 20px;
+            background: var(--card-bg); border: 1px solid var(--primary-gold);
+            color: var(--primary-gold); width: 45px; height: 45px;
+            border-radius: 50%; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; font-size: 1.2rem;
             z-index: 1000;
         }
 
         .profile-header { text-align: center; margin-top: 50px; margin-bottom: 20px; width: 100%; max-width: 400px; }
-        
         .avatar {
             width: 90px; height: 90px;
             background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-gold) 100%);
@@ -71,16 +59,27 @@
         h1 { font-size: 1.6rem; margin: 0; }
         .subtitle { color: var(--primary-gold); font-size: 0.95rem; margin-top: 8px; font-weight: 500; }
 
+        .action-buttons {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+            width: 100%; max-width: 400px; margin: 20px 0;
+        }
+
+        .secondary-btn {
+            background: var(--card-bg); border: 1px solid var(--primary-gold);
+            color: var(--text-main); padding: 12px; border-radius: 12px;
+            text-decoration: none; font-size: 0.85rem; font-weight: 600;
+            text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+
         .section-title {
             text-align: right; width: 100%; max-width: 400px; font-size: 1rem;
-            color: var(--text-gray); margin: 25px 0 15px 0; padding-right: 10px; border-right: 3px solid var(--primary-gold);
+            color: var(--text-gray); margin: 20px 0 15px 0; padding-right: 10px; border-right: 3px solid var(--primary-gold);
         }
 
         .service-card {
             background: var(--card-bg); border-radius: 15px; padding: 18px; margin-bottom: 12px;
             width: 100%; max-width: 400px; display: flex; align-items: center; gap: 15px;
             border: 1px solid rgba(212, 175, 55, 0.1);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
 
         .icon-box {
@@ -93,13 +92,8 @@
         .service-info p { font-size: 0.8rem; color: var(--text-gray); margin-top: 4px; }
 
         .marquee-container {
-            width: 100vw;
-            background: var(--marquee-bg);
-            padding: 15px 0;
-            margin: 15px 0;
-            overflow: hidden;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            width: 100vw; background: var(--marquee-bg); padding: 15px 0; margin: 15px 0;
+            overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.1); border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .marquee-content { display: flex; white-space: nowrap; animation: marquee 20s linear infinite; }
@@ -115,18 +109,27 @@
             gap: 10px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
-        footer { margin-top: 30px; padding-bottom: 20px; font-size: 0.75rem; color: var(--text-gray); opacity: 0.6; }
+        footer { margin-top: 30px; font-size: 0.75rem; color: var(--text-gray); opacity: 0.6; }
     </style>
 </head>
 <body data-theme="dark">
 
-    <!-- زر التبديل -->
-    <button class="theme-toggle" id="themeToggle" title="تبديل الوضع">🌙</button>
+    <button class="theme-toggle" id="themeToggle">🌙</button>
 
     <div class="profile-header">
         <div class="avatar">ص</div>
         <h1>صالح</h1>
         <p class="subtitle">حلول توريد الجلود والتنجيد الاحترافي</p>
+    </div>
+
+    <!-- الأزرار الجديدة -->
+    <div class="action-buttons">
+        <a href="https://www.google.com/maps?q=Riyadh" target="_blank" class="secondary-btn">
+            📍 موقعنا
+        </a>
+        <a href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:;صالح;;;%0ATEL;TYPE=CELL:0508483130%0AEND:VCARD" download="صالح.vcf" class="secondary-btn">
+            👤 حفظ الرقم
+        </a>
     </div>
 
     <div class="section-title">خدماتنا</div>
@@ -164,7 +167,6 @@
             <div class="marquee-item">فنادق وأجنحة</div>
             <div class="marquee-item">قاعات مناسبات</div>
             <div class="marquee-item">عيادات ومراكز</div>
-            <div class="marquee-item">صالات رياضية</div>
             <div class="marquee-item">قصور ومنازل</div>
         </div>
     </div>
