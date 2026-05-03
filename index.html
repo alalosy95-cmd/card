@@ -5,19 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صالح | توريد جلود وتنجيد</title>
     <style>
+        /* تعريف الألوان للوضعين */
         :root {
             --primary-gold: #D4AF37;
-            --bg-dark: #0f0f0f;
+            --bg: #0f0f0f;
             --card-bg: #1a1a1a;
-            --text-white: #ffffff;
+            --text-main: #ffffff;
             --text-gray: #a0a0a0;
+            --marquee-bg: rgba(255, 255, 255, 0.03);
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        [data-theme="light"] {
+            --bg: #f5f5f5;
+            --card-bg: #ffffff;
+            --text-main: #1a1a1a;
+            --text-gray: #666666;
+            --marquee-bg: rgba(0, 0, 0, 0.05);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; transition: background 0.3s, color 0.3s; }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
+            background-color: var(--bg);
+            color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             display: flex;
@@ -28,13 +38,34 @@
             overflow-x: hidden;
         }
 
-        .profile-header { text-align: center; margin-top: 40px; margin-bottom: 20px; width: 100%; max-width: 400px; }
+        /* زر التبديل */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--primary-gold);
+            color: var(--primary-gold);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .profile-header { text-align: center; margin-top: 50px; margin-bottom: 20px; width: 100%; max-width: 400px; }
+        
         .avatar {
             width: 90px; height: 90px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #D4AF37 100%);
+            background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-gold) 100%);
             border-radius: 50%; margin-bottom: 15px;
             display: inline-flex; align-items: center; justify-content: center;
-            font-size: 2.5rem; color: var(--bg-dark); border: 2px solid var(--primary-gold); font-weight: bold;
+            font-size: 2.5rem; color: #0f0f0f; border: 2px solid var(--primary-gold); font-weight: bold;
         }
 
         h1 { font-size: 1.6rem; margin: 0; }
@@ -49,6 +80,7 @@
             background: var(--card-bg); border-radius: 15px; padding: 18px; margin-bottom: 12px;
             width: 100%; max-width: 400px; display: flex; align-items: center; gap: 15px;
             border: 1px solid rgba(212, 175, 55, 0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
 
         .icon-box {
@@ -60,49 +92,21 @@
         .service-info h3 { font-size: 1rem; margin: 0; }
         .service-info p { font-size: 0.8rem; color: var(--text-gray); margin-top: 4px; }
 
-        /* تصميم الشريط المتحرك المحدث */
         .marquee-container {
             width: 100vw;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 12px 0;
+            background: var(--marquee-bg);
+            padding: 15px 0;
             margin: 15px 0;
             overflow: hidden;
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        .marquee-content {
-            display: flex;
-            white-space: nowrap;
-            animation: marquee 25s linear infinite;
-            align-items: center;
-        }
+        .marquee-content { display: flex; white-space: nowrap; animation: marquee 20s linear infinite; }
+        .marquee-item { color: var(--text-main); font-size: 0.9rem; margin: 0 30px; display: flex; align-items: center; font-weight: 500; }
+        .marquee-item::after { content: "•"; color: var(--primary-gold); margin-right: 60px; }
 
-        .marquee-item {
-            color: var(--text-white);
-            font-size: 0.85rem;
-            margin: 0 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 500;
-        }
-
-        .marquee-item img {
-            height: 30px; /* حجم الشعار في الشريط */
-            width: auto;
-            filter: brightness(1.2); /* تفتيح الشعار ليتناسب مع الخلفية السوداء */
-        }
-
-        .dot-separator {
-            color: var(--primary-gold);
-            font-size: 1.2rem;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
+        @keyframes marquee { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
         .contact-btn {
             background: var(--primary-gold); color: #000; width: 100%; max-width: 400px;
@@ -114,7 +118,10 @@
         footer { margin-top: 30px; padding-bottom: 20px; font-size: 0.75rem; color: var(--text-gray); opacity: 0.6; }
     </style>
 </head>
-<body>
+<body data-theme="dark">
+
+    <!-- زر التبديل -->
+    <button class="theme-toggle" id="themeToggle" title="تبديل الوضع">🌙</button>
 
     <div class="profile-header">
         <div class="avatar">ص</div>
@@ -135,33 +142,30 @@
     <div class="service-card">
         <div class="icon-box">🪑</div>
         <div class="service-info">
-            <h3>تنجيد وصيانة</h3>
+            <h3>تنجيد الكراسي</h3>
             <p>تجديد المقاعد والأثاث بأعلى معايير الجودة.</p>
         </div>
     </div>
 
-    <div class="section-title">شركاء النجاح والتعاون</div>
+    <div class="service-card">
+        <div class="icon-box">🛠️</div>
+        <div class="service-info">
+            <h3>صيانة وترميم</h3>
+            <p>إصلاح وتجديد القطع الجلدية المتضررة.</p>
+        </div>
+    </div>
 
-    <!-- الشريط المتحرك بالشعارات -->
+    <div class="section-title">قطاعات نخدمها</div>
+
     <div class="marquee-container">
         <div class="marquee-content">
-            <div class="marquee-item">
-                <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/d/d2/Ministry_of_Tourism_of_Saudi_Arabia_logo.svg/1200px-Ministry_of_Tourism_of_Saudi_Arabia_logo.svg.png" alt="Tourism Logo">
-                وزارة السياحة
-            </div>
-            <span class="dot-separator">•</span>
             <div class="marquee-item">مطاعم وكافيهات</div>
-            <span class="dot-separator">•</span>
-            <div class="marquee-item">فنادق وأجنحة</div>
-            <span class="dot-separator">•</span>
             <div class="marquee-item">مكاتب وشركات</div>
-            <span class="dot-separator">•</span>
-            <div class="marquee-item">
-                <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/d/d2/Ministry_of_Tourism_of_Saudi_Arabia_logo.svg/1200px-Ministry_of_Tourism_of_Saudi_Arabia_logo.svg.png" alt="Tourism Logo">
-                وزارة السياحة
-            </div>
-            <span class="dot-separator">•</span>
+            <div class="marquee-item">فنادق وأجنحة</div>
             <div class="marquee-item">قاعات مناسبات</div>
+            <div class="marquee-item">عيادات ومراكز</div>
+            <div class="marquee-item">صالات رياضية</div>
+            <div class="marquee-item">قصور ومنازل</div>
         </div>
     </div>
 
@@ -171,5 +175,19 @@
 
     <footer>صالح للجلود والتنجيد &copy; 2026</footer>
 
+    <script>
+        const toggleBtn = document.getElementById('themeToggle');
+        const body = document.body;
+
+        toggleBtn.addEventListener('click', () => {
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.setAttribute('data-theme', 'light');
+                toggleBtn.textContent = '☀️';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                toggleBtn.textContent = '🌙';
+            }
+        });
+    </script>
 </body>
 </html>
