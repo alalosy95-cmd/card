@@ -18,7 +18,7 @@
             --bg: #f5f5f5;
             --card-bg: #ffffff;
             --text-main: #1a1a1a;
-            --text-gray: #666666;
+            --text-gray: #444444;
             --marquee-bg: rgba(0, 0, 0, 0.05);
         }
 
@@ -73,30 +73,32 @@
 
         .section-title {
             text-align: right; width: 100%; max-width: 400px; font-size: 1rem;
-            color: var(--text-gray); margin: 20px 0 15px 0; padding-right: 10px; border-right: 3px solid var(--primary-gold);
+            color: var(--text-gray); margin: 25px 0 15px 0; padding-right: 10px; border-right: 3px solid var(--primary-gold);
+            font-weight: bold;
         }
 
         .service-card {
-            background: var(--card-bg); border-radius: 15px; padding: 18px; margin-bottom: 12px;
-            width: 100%; max-width: 400px; display: flex; align-items: center; gap: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            background: var(--card-bg); border-radius: 15px; padding: 22px; margin-bottom: 15px;
+            width: 100%; max-width: 400px; display: flex; align-items: flex-start; gap: 18px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .icon-box {
             background: rgba(212, 175, 55, 0.1); color: var(--primary-gold);
-            width: 45px; height: 45px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
+            min-width: 50px; height: 50px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
         }
 
-        .service-info h3 { font-size: 1rem; margin: 0; }
-        .service-info p { font-size: 0.8rem; color: var(--text-gray); margin-top: 4px; }
+        .service-info h3 { font-size: 1.1rem; margin: 0; color: var(--primary-gold); }
+        .service-info p { font-size: 0.88rem; color: var(--text-main); margin-top: 6px; line-height: 1.6; opacity: 0.9; }
 
         .marquee-container {
-            width: 100vw; background: var(--marquee-bg); padding: 15px 0; margin: 15px 0;
+            width: 100vw; background: var(--marquee-bg); padding: 15px 0; margin: 20px 0;
             overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.1); border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        .marquee-content { display: flex; white-space: nowrap; animation: marquee 20s linear infinite; }
+        .marquee-content { display: flex; white-space: nowrap; animation: marquee 25s linear infinite; }
         .marquee-item { color: var(--text-main); font-size: 0.9rem; margin: 0 30px; display: flex; align-items: center; font-weight: 500; }
         .marquee-item::after { content: "•"; color: var(--primary-gold); margin-right: 60px; }
 
@@ -104,12 +106,13 @@
 
         .contact-btn {
             background: var(--primary-gold); color: #000; width: 100%; max-width: 400px;
-            padding: 16px; border-radius: 30px; text-decoration: none; font-weight: 800;
-            margin-top: 20px; display: flex; align-items: center; justify-content: center;
-            gap: 10px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            padding: 18px; border-radius: 35px; text-decoration: none; font-weight: 800;
+            margin-top: 25px; display: flex; align-items: center; justify-content: center;
+            gap: 10px; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            font-size: 1rem;
         }
 
-        footer { margin-top: 30px; font-size: 0.75rem; color: var(--text-gray); opacity: 0.6; }
+        footer { margin-top: 40px; font-size: 0.75rem; color: var(--text-gray); opacity: 0.7; }
     </style>
 </head>
 <body data-theme="dark">
@@ -119,10 +122,9 @@
     <div class="profile-header">
         <div class="avatar">ص</div>
         <h1>صالح</h1>
-        <p class="subtitle">حلول توريد الجلود والتنجيد الاحترافي</p>
+        <p class="subtitle">خبرة في حلول الجلود وتجهيز المنشآت</p>
     </div>
 
-    <!-- الأزرار الجديدة -->
     <div class="action-buttons">
         <a href="https://www.google.com/maps?q=Riyadh" target="_blank" class="secondary-btn">
             📍 موقعنا
@@ -132,29 +134,29 @@
         </a>
     </div>
 
-    <div class="section-title">خدماتنا</div>
+    <div class="section-title">ماذا نقدم؟</div>
     
     <div class="service-card">
-        <div class="icon-box">🏗️</div>
+        <div class="icon-box">📐</div>
         <div class="service-info">
-            <h3>توريد الجلود</h3>
-            <p>خامات ممتازة للمشاريع التجارية والخاصة.</p>
+            <h3>توريد الجلود الفاخرة</h3>
+            <p>نوفر تشكيلة واسعة من الجلود (الصناعية والطبيعية) المقاومة للاستخدام الشاق، بمواصفات عالمية تناسب المطاعم، المكاتب، والسيارات.</p>
         </div>
     </div>
 
     <div class="service-card">
-        <div class="icon-box">🪑</div>
+        <div class="icon-box">🛋️</div>
         <div class="service-info">
-            <h3>تنجيد الكراسي</h3>
-            <p>تجديد المقاعد والأثاث بأعلى معايير الجودة.</p>
+            <h3>تنجيد وتحديث الأثاث</h3>
+            <p>إعادة إحياء وتنجيد الكراسي والأطقم بلمسات عصرية. نضمن دقة التنفيذ واستخدام أفضل أنواع الإسفنج والخامات لراحة تدوم طويلاً.</p>
         </div>
     </div>
 
     <div class="service-card">
-        <div class="icon-box">🛠️</div>
+        <div class="icon-box">✨</div>
         <div class="service-info">
-            <h3>صيانة وترميم</h3>
-            <p>إصلاح وتجديد القطع الجلدية المتضررة.</p>
+            <h3>صيانة وترميم احترافي</h3>
+            <p>حلول ترميم شاملة للقطع الجلدية المتضررة، مع معالجة الخدوش والبهتان لإعادتها كأنها جديدة تماماً بأقل التكاليف.</p>
         </div>
     </div>
 
@@ -162,20 +164,20 @@
 
     <div class="marquee-container">
         <div class="marquee-content">
-            <div class="marquee-item">مطاعم وكافيهات</div>
-            <div class="marquee-item">مكاتب وشركات</div>
-            <div class="marquee-item">فنادق وأجنحة</div>
-            <div class="marquee-item">قاعات مناسبات</div>
-            <div class="marquee-item">عيادات ومراكز</div>
-            <div class="marquee-item">قصور ومنازل</div>
+            <div class="marquee-item">المطاعم والكافيهات</div>
+            <div class="marquee-item">المكاتب والشركات الكبرى</div>
+            <div class="marquee-item">الفنادق والوحدات الفندقية</div>
+            <div class="marquee-item">قاعات المؤتمرات</div>
+            <div class="marquee-item">تجهيز الصالونات والعيادات</div>
+            <div class="marquee-item">المنازل والقصور</div>
         </div>
     </div>
 
     <a href="https://wa.me/966508483130" class="contact-btn">
-        <span>💬</span> اطلب عرض سعر الآن
+        <span>💬</span> اطلب استشارة أو عرض سعر
     </a>
 
-    <footer>صالح للجلود والتنجيد &copy; 2026</footer>
+    <footer>صالح | حلول الجلود والتنجيد الاحترافية &copy; 2026</footer>
 
     <script>
         const toggleBtn = document.getElementById('themeToggle');
