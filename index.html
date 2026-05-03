@@ -25,6 +25,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            overflow-x: hidden; /* لمنع التمرير الجانبي بسبب الشريط */
         }
 
         .profile-header { text-align: center; margin-top: 40px; margin-bottom: 20px; width: 100%; max-width: 400px; }
@@ -39,51 +40,73 @@
         h1 { font-size: 1.6rem; margin: 0; }
         .subtitle { color: var(--primary-gold); font-size: 0.95rem; margin-top: 8px; font-weight: 500; }
 
-        .about-text {
-            text-align: center; max-width: 400px; font-size: 0.9rem;
-            color: var(--text-gray); line-height: 1.6; margin-bottom: 30px; padding: 0 10px;
-        }
-
         .section-title {
             text-align: right; width: 100%; max-width: 400px; font-size: 1rem;
-            color: var(--text-gray); margin: 20px 0 10px 0; padding-right: 10px; border-right: 3px solid var(--primary-gold);
+            color: var(--text-gray); margin: 25px 0 15px 0; padding-right: 10px; border-right: 3px solid var(--primary-gold);
         }
 
         .service-card {
-            background: var(--card-bg); border-radius: 15px; padding: 20px; margin-bottom: 12px;
+            background: var(--card-bg); border-radius: 15px; padding: 18px; margin-bottom: 12px;
             width: 100%; max-width: 400px; display: flex; align-items: center; gap: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.1); transition: 0.3s;
+            border: 1px solid rgba(212, 175, 55, 0.1);
         }
 
         .icon-box {
             background: rgba(212, 175, 55, 0.1); color: var(--primary-gold);
-            width: 50px; height: 50px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+            width: 45px; height: 45px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.4rem;
         }
 
-        .service-info h3 { font-size: 1.05rem; margin: 0; }
-        .service-info p { font-size: 0.85rem; color: var(--text-gray); margin-top: 5px; }
+        .service-info h3 { font-size: 1rem; margin: 0; }
+        .service-info p { font-size: 0.8rem; color: var(--text-gray); margin-top: 4px; }
 
-        /* قسم الجهات المتعاونة */
-        .partners-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
-            width: 100%; max-width: 400px; margin-bottom: 20px;
+        /* تصميم الشريط المتحرك */
+        .marquee-container {
+            width: 100vw;
+            background: rgba(212, 175, 55, 0.05);
+            padding: 15px 0;
+            margin: 10px 0;
+            overflow: hidden;
+            position: relative;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
         }
 
-        .partner-item {
-            background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px;
-            text-align: center; font-size: 0.85rem; color: var(--text-white);
-            border: 1px dashed rgba(212, 175, 55, 0.2);
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-item {
+            color: var(--text-white);
+            font-size: 0.9rem;
+            margin: 0 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .marquee-item::after {
+            content: "•";
+            color: var(--primary-gold);
+            margin-right: 30px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .contact-btn {
             background: var(--primary-gold); color: #000; width: 100%; max-width: 400px;
             padding: 16px; border-radius: 30px; text-decoration: none; font-weight: 800;
-            margin-top: 20px; display: flex; align-items: center; justify-content: center;
+            margin-top: 30px; display: flex; align-items: center; justify-content: center;
             gap: 10px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
-        footer { margin-top: auto; padding: 30px; font-size: 0.75rem; color: var(--text-gray); opacity: 0.6; }
+        footer { margin-top: 30px; padding-bottom: 20px; font-size: 0.75rem; color: var(--text-gray); opacity: 0.6; }
     </style>
 </head>
 <body>
@@ -91,20 +114,16 @@
     <div class="profile-header">
         <div class="avatar">ص</div>
         <h1>صالح</h1>
-        <p class="subtitle">متخصص في حلول الجلود والتنجيد</p>
+        <p class="subtitle">حلول توريد الجلود والتنجيد الاحترافي</p>
     </div>
 
-    <div class="about-text">
-        نقدم خدمات متكاملة في توريد أجود أنواع الجلود، مع خبرة واسعة في تنجيد الكراسي والمفروشات وصيانتها بأعلى معايير الجودة.
-    </div>
-
-    <div class="section-title">خدماتنا الرئيسية</div>
+    <div class="section-title">خدماتنا</div>
     
     <div class="service-card">
         <div class="icon-box">🏗️</div>
         <div class="service-info">
             <h3>توريد الجلود</h3>
-            <p>توفير خيارات واسعة من الجلود للمشاريع التجارية والخاصة.</p>
+            <p>خامات ممتازة للمشاريع التجارية والخاصة.</p>
         </div>
     </div>
 
@@ -112,17 +131,25 @@
         <div class="icon-box">🪑</div>
         <div class="service-info">
             <h3>تنجيد وصيانة</h3>
-            <p>تجديد المقاعد والأثاث بلمسات احترافية تضمن المتانة والشكل العصري.</p>
+            <p>تجديد المقاعد والأثاث بأعلى معايير الجودة.</p>
         </div>
     </div>
 
-    <div class="section-title">جهات تعاونا معها</div>
+    <div class="section-title">شركاء النجاح</div>
 
-    <div class="partners-grid">
-        <div class="partner-item">مطاعم وكافيهات</div>
-        <div class="partner-item">مكاتب شركات</div>
-        <div class="partner-item">فنادق وشقق مفروشة</div>
-        <div class="partner-item">قاعات ومراكز مناسبات</div>
+    <!-- الشريط المتحرك -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <div class="marquee-item">مطاعم وكافيهات</div>
+            <div class="marquee-item">مكاتب وشركات</div>
+            <div class="marquee-item">فنادق وأجنحة</div>
+            <div class="marquee-item">قاعات مناسبات</div>
+            <div class="marquee-item">عيادات ومراكز</div>
+            <div class="marquee-item">صالات رياضية</div>
+            <!-- تكرار العناصر لضمان استمرارية الحركة -->
+            <div class="marquee-item">مطاعم وكافيهات</div>
+            <div class="marquee-item">مكاتب وشركات</div>
+        </div>
     </div>
 
     <a href="https://wa.me/966508483130" class="contact-btn">
