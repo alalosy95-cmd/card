@@ -13,10 +13,7 @@
             --text-gray: #a0a0a0;
         }
 
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             background-color: var(--bg-dark);
@@ -30,102 +27,60 @@
             padding: 20px;
         }
 
-        .profile-header {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            width: 100%;
-            max-width: 400px;
-        }
-
+        .profile-header { text-align: center; margin-top: 40px; margin-bottom: 20px; width: 100%; max-width: 400px; }
         .avatar {
-            width: 90px;
-            height: 90px;
+            width: 90px; height: 90px;
             background: linear-gradient(135deg, #1a1a1a 0%, #D4AF37 100%);
-            border-radius: 50%;
-            margin-bottom: 15px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            color: var(--bg-dark);
-            border: 2px solid var(--primary-gold);
-            font-weight: bold;
+            border-radius: 50%; margin-bottom: 15px;
+            display: inline-flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: var(--bg-dark); border: 2px solid var(--primary-gold); font-weight: bold;
         }
 
         h1 { font-size: 1.6rem; margin: 0; }
         .subtitle { color: var(--primary-gold); font-size: 0.95rem; margin-top: 8px; font-weight: 500; }
 
         .about-text {
-            text-align: center;
-            max-width: 400px;
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            line-height: 1.6;
-            margin-bottom: 30px;
-            padding: 0 10px;
+            text-align: center; max-width: 400px; font-size: 0.9rem;
+            color: var(--text-gray); line-height: 1.6; margin-bottom: 30px; padding: 0 10px;
         }
 
         .section-title {
-            text-align: right;
-            width: 100%;
-            max-width: 400px;
-            font-size: 1rem;
-            color: var(--text-gray);
-            margin: 20px 0 10px 0;
-            padding-right: 10px;
-            border-right: 3px solid var(--primary-gold);
+            text-align: right; width: 100%; max-width: 400px; font-size: 1rem;
+            color: var(--text-gray); margin: 20px 0 10px 0; padding-right: 10px; border-right: 3px solid var(--primary-gold);
         }
 
         .service-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 12px;
-            width: 100%;
-            max-width: 400px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: 0.3s;
-        }
-
-        .service-card:hover {
-            border-color: var(--primary-gold);
-            background: #222;
+            background: var(--card-bg); border-radius: 15px; padding: 20px; margin-bottom: 12px;
+            width: 100%; max-width: 400px; display: flex; align-items: center; gap: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1); transition: 0.3s;
         }
 
         .icon-box {
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--primary-gold);
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
+            background: rgba(212, 175, 55, 0.1); color: var(--primary-gold);
+            width: 50px; height: 50px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
         }
 
-        .service-info h3 { font-size: 1.05rem; margin: 0; color: var(--text-white); }
-        .service-info p { font-size: 0.85rem; color: var(--text-gray); margin-top: 5px; line-height: 1.4; }
+        .service-info h3 { font-size: 1.05rem; margin: 0; }
+        .service-info p { font-size: 0.85rem; color: var(--text-gray); margin-top: 5px; }
+
+        /* قسم الجهات المتعاونة */
+        .partners-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+            width: 100%; max-width: 400px; margin-bottom: 20px;
+        }
+
+        .partner-item {
+            background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 15px;
+            text-align: center; font-size: 0.85rem; color: var(--text-white);
+            border: 1px dashed rgba(212, 175, 55, 0.2);
+        }
 
         .contact-btn {
-            background: var(--primary-gold);
-            color: #000;
-            width: 100%;
-            max-width: 400px;
-            padding: 16px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 800;
-            margin-top: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            background: var(--primary-gold); color: #000; width: 100%; max-width: 400px;
+            padding: 16px; border-radius: 30px; text-decoration: none; font-weight: 800;
+            margin-top: 20px; display: flex; align-items: center; justify-content: center;
+            gap: 10px; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         footer { margin-top: auto; padding: 30px; font-size: 0.75rem; color: var(--text-gray); opacity: 0.6; }
@@ -140,7 +95,7 @@
     </div>
 
     <div class="about-text">
-        نقدم خدمات متكاملة في توريد أجود أنواع الجلود، مع خبرة واسعة في تنجيد الكراسي وصيانتها بأعلى معايير الجودة.
+        نقدم خدمات متكاملة في توريد أجود أنواع الجلود، مع خبرة واسعة في تنجيد الكراسي والمفروشات وصيانتها بأعلى معايير الجودة.
     </div>
 
     <div class="section-title">خدماتنا الرئيسية</div>
@@ -149,24 +104,25 @@
         <div class="icon-box">🏗️</div>
         <div class="service-info">
             <h3>توريد الجلود</h3>
-            <p>توفير خيارات واسعة من الجلود الصناعية والطبيعية للمشاريع التجارية والخاصة.</p>
+            <p>توفير خيارات واسعة من الجلود للمشاريع التجارية والخاصة.</p>
         </div>
     </div>
 
     <div class="service-card">
         <div class="icon-box">🪑</div>
         <div class="service-info">
-            <h3>تنجيد الكراسي والمفروشات</h3>
-            <p>تجديد وتنجيد المقاعد والأثاث بلمسات احترافية تضمن المتانة والشكل العصري.</p>
+            <h3>تنجيد وصيانة</h3>
+            <p>تجديد المقاعد والأثاث بلمسات احترافية تضمن المتانة والشكل العصري.</p>
         </div>
     </div>
 
-    <div class="service-card">
-        <div class="icon-box">🛠️</div>
-        <div class="service-info">
-            <h3>صيانة وترميم</h3>
-            <p>إصلاح وصيانة القطع الجلدية المتضررة واستعادتها لحالتها الأصلية.</p>
-        </div>
+    <div class="section-title">جهات تعاونا معها</div>
+
+    <div class="partners-grid">
+        <div class="partner-item">مطاعم وكافيهات</div>
+        <div class="partner-item">مكاتب شركات</div>
+        <div class="partner-item">فنادق وشقق مفروشة</div>
+        <div class="partner-item">قاعات ومراكز مناسبات</div>
     </div>
 
     <a href="https://wa.me/966508483130" class="contact-btn">
