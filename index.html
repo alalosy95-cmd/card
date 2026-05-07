@@ -3,135 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صالح | خبير الجلود والتنجيد</title>
+    <title>صالح | خبير الجلود العالمي</title>
     <style>
-        :root { --gold: #D4AF37; --bg: #0f0f0f; --card: #1a1a1a; --white: #ffffff; --gray: #a0a0a0; }
-        * { box-sizing: border-box; transition: all 0.3s ease; }
-        body { background: var(--bg); color: var(--white); font-family: sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        /* إعدادات الألوان والمتغيرات */
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #b88a44;
+            --black: #0a0a0a;
+            --card-bg: #161616;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        [data-theme="light"] {
+            --black: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-white: #1a1a1a;
+            --text-gray: #5c5c5c;
+        }
+
+        /* التنسيق العام */
+        * { box-sizing: border-box; margin: 0; padding: 0; transition: var(--transition); }
+        body {
+            background-color: var(--black);
+            color: var(--text-white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        .container { width: 100%; max-width: 500px; margin: 0 auto; padding: 20px; }
+
+        /* شريط اللغات العلوي */
+        .top-nav {
+            position: sticky; top: 0; z-index: 1000;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 0; border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex; justify-content: center; gap: 10px;
+        }
+
+        .lang-btn {
+            background: var(--card-bg); border: 1px solid var(--gold);
+            color: var(--gold); padding: 8px 16px; border-radius: 8px;
+            cursor: pointer; font-weight: bold; font-size: 0.9rem;
+        }
+
+        .lang-btn.active { background: var(--gold); color: #000; }
+
+        /* الهيدر والبروفايل */
+        .profile-section { text-align: center; padding: 40px 0; }
+        .main-avatar {
+            width: 110px; height: 110px; border-radius: 30px;
+            background: linear-gradient(45deg, var(--black), var(--gold));
+            margin: 0 auto 20px; border: 2px solid var(--gold);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; color: #fff; transform: rotate(-5deg);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .experience-ribbon {
+            background: var(--gold); color: #000; padding: 5px 20px;
+            border-radius: 20px; font-weight: 900; font-size: 0.8rem;
+            display: inline-block; margin-bottom: 15px; text-transform: uppercase;
+        }
+
+        h1 { font-size: 2rem; margin-bottom: 10px; letter-spacing: 1px; }
+
+        /* قسم الإحصائيات */
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;
+            margin: 30px 0;
+        }
+        .stat-card {
+            background: var(--card-bg); padding: 15px; border-radius: 15px;
+            text-align: center; border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        .stat-card h4 { color: var(--gold); font-size: 1.2rem; margin-bottom: 5px; }
+        .stat-card p { font-size: 0.7rem; color: var(--text-gray); text-transform: uppercase; }
+
+        /* الخدمات المتقدمة */
+        .section-title {
+            display: flex; align-items: center; gap: 10px; margin: 40px 0 20px;
+            color: var(--gold); font-weight: 900; font-size: 1.2rem;
+        }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: rgba(212, 175, 55, 0.3); }
+
+        .service-box {
+            background: var(--card-bg); border-radius: 25px; padding: 25px;
+            margin-bottom: 20px; border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative; overflow: hidden;
+        }
+        .service-box:hover { transform: translateY(-5px); border-color: var(--gold); }
         
-        /* Language Switcher */
-        .lang-bar { display: flex; gap: 10px; margin-bottom: 30px; background: var(--card); padding: 5px; border-radius: 12px; border: 1px solid var(--gold); }
-        .l-btn { background: none; border: none; color: var(--gray); padding: 8px 15px; cursor: pointer; font-weight: bold; border-radius: 8px; }
-        .l-btn.active { background: var(--gold); color: #000; }
+        .service-icon {
+            width: 50px; height: 50px; background: rgba(212, 175, 55, 0.1);
+            border-radius: 12px; display: flex; align-items: center;
+            justify-content: center; font-size: 1.5rem; color: var(--gold);
+            margin-bottom: 15px;
+        }
 
-        .header { text-align: center; max-width: 400px; }
-        .avatar { width: 90px; height: 90px; background: linear-gradient(135deg, #1a1a1a, var(--gold)); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: #000; border: 3px solid var(--gold); }
-        .badge { background: rgba(212, 175, 55, 0.15); color: var(--gold); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; border: 1px solid var(--gold); display: inline-block; }
+        .tag-pill {
+            display: inline-block; padding: 4px 10px; border-radius: 6px;
+            background: rgba(255,255,255,0.05); font-size: 0.75rem;
+            margin-top: 10px; border: 1px solid rgba(212, 175, 55, 0.2);
+            margin-right: 5px;
+        }
 
-        /* Stats Section */
-        .stats { display: flex; justify-content: space-around; width: 100%; max-width: 400px; margin: 20px 0; background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid rgba(212,175,55,0.1); }
-        .stat-item { text-align: center; }
-        .stat-num { display: block; color: var(--gold); font-weight: 900; font-size: 1.1rem; }
-        .stat-lab { font-size: 0.7rem; color: var(--gray); }
+        /* الأسئلة الشائعة FAQ */
+        .faq-item {
+            background: var(--card-bg); border-radius: 12px; margin-bottom: 10px;
+            cursor: pointer; overflow: hidden;
+        }
+        .faq-q { padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+        .faq-a { padding: 0 15px; max-height: 0; opacity: 0; transition: 0.3s ease-out; font-size: 0.9rem; color: var(--text-gray); }
+        .faq-item.active .faq-a { padding: 15px; max-height: 200px; opacity: 1; }
+        .faq-item.active .faq-q { color: var(--gold); border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
 
-        .card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 15px; width: 100%; max-width: 400px; border: 1px solid rgba(212,175,55,0.2); }
-        .card-h { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-        .icon { background: rgba(212,175,55,0.1); color: var(--gold); min-width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
-        
-        .tags { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-        .tag { font-size: 0.7rem; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 5px; border: 1px solid rgba(212,175,55,0.2); }
+        /* شريط التمرير */
+        .marquee {
+            width: 100%; background: var(--card-bg); padding: 15px 0;
+            margin: 40px 0; overflow: hidden; white-space: nowrap;
+        }
+        .marquee-inner { display: inline-block; animation: slide 25s linear infinite; }
+        @keyframes slide { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+        .m-text { margin: 0 40px; font-weight: 900; color: var(--text-white); font-size: 0.9rem; opacity: 0.8; }
 
-        .marquee { width: 100vw; background: rgba(212,175,55,0.05); padding: 15px 0; margin: 20px 0; overflow: hidden; white-space: nowrap; }
-        .m-content { display: inline-block; animation: scroll 20s linear infinite; }
-        @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+        /* أزرار التواصل */
+        .cta-container { display: flex; flex-direction: column; gap: 15px; margin-top: 30px; }
+        .btn {
+            padding: 20px; border-radius: 18px; text-decoration: none;
+            text-align: center; font-weight: 900; display: flex;
+            align-items: center; justify-content: center; gap: 10px;
+            font-size: 1.1rem;
+        }
+        .btn-gold { background: var(--gold); color: #000; box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); }
+        .btn-outline { border: 1px solid var(--gold); color: var(--gold); }
 
-        .btn-main { background: var(--gold); color: #000; width: 100%; max-width: 400px; padding: 18px; border-radius: 30px; text-decoration: none; font-weight: 900; text-align: center; margin-top: 20px; display: block; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
-        footer { margin-top: 40px; font-size: 0.8rem; color: var(--gray); }
+        footer { text-align: center; margin-top: 60px; color: var(--text-gray); font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-    <div class="lang-bar">
-        <button class="l-btn active" onclick="updateLang('ar')">عربي</button>
-        <button class="l-btn" onclick="updateLang('en')">EN</button>
-        <button class="l-btn" onclick="updateLang('ur')">اردو</button>
-    </div>
+    <nav class="top-nav">
+        <button class="lang-btn active" onclick="changeLanguage('ar')">عربي</button>
+        <button class="lang-btn" onclick="changeLanguage('en')">English</button>
+        <button class="lang-btn" onclick="changeLanguage('ur')">اردو</button>
+    </nav>
 
-    <div class="header">
-        <div class="avatar">ص</div>
-        <h1 id="h-name">صالح</h1>
-        <div class="badge" id="h-exp">خبرة أكثر من 20 سنة</div>
-        <p id="h-sub" style="color: var(--gray); margin-top:10px;">نجمع بين الخبرة العريقة وأحدث تقنيات التنجيد</p>
-    </div>
+    <div class="container">
+        <!-- قسم الهوية -->
+        <header class="profile-section">
+            <div class="main-avatar">ص</div>
+            <div class="experience-ribbon" id="exp-badge">خبرة تتجاوز 20 عاماً</div>
+            <h1 id="main-name">صالح</h1>
+            <p id="main-sub" style="color: var(--text-gray);">المرجع الأول لحلول الجلود الفاخرة وتجهيز المنشآت</p>
+        </header>
 
-    <div class="stats">
-        <div class="stat-item"><span class="stat-num">+500</span><span class="stat-lab" id="st1">عميل سعيد</span></div>
-        <div class="stat-item"><span class="stat-num">20+</span><span class="stat-lab" id="st2">سنة خبرة</span></div>
-        <div class="stat-item"><span class="stat-num">100%</span><span class="stat-lab" id="st3">ضمان جودة</span></div>
-    </div>
-
-    <div class="card">
-        <div class="card-h"><div class="icon">📦</div><h3 id="s1-t">توريد الجلود الفاخرة</h3></div>
-        <p id="s1-d" style="font-size: 0.9rem; color: var(--gray);">نوفر أفضل أنواع الجلود المختارة بعناية للمشاريع الكبرى.</p>
-        <div class="tags">
-            <span class="tag" id="t1">✅ جلود طبيعية</span>
-            <span class="tag" id="t2">✅ جلود صناعية</span>
+        <!-- الإحصائيات -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h4>+500</h4>
+                <p id="st-1">عميل سعيد</p>
+            </div>
+            <div class="stat-card">
+                <h4>20+</h4>
+                <p id="st-2">عام من العطاء</p>
+            </div>
+            <div class="stat-card">
+                <h4>100%</h4>
+                <p id="st-3">جودة مضمونة</p>
+            </div>
         </div>
+
+        <!-- الخدمات -->
+        <h2 class="section-title" id="title-services">خدماتنا النخبوية</h2>
+        
+        <div class="service-box">
+            <div class="service-icon">📦</div>
+            <h3 id="s1-t">توريد الجلود الفاخرة</h3>
+            <p id="s1-d" style="font-size: 0.9rem; color: var(--text-gray); margin-top: 10px;">
+                متخصصون في توريد أفضل الجلود العالمية للمشاريع الكبرى والفنادق والقصور.
+            </p>
+            <div class="tags">
+                <span class="tag-pill" id="t-nat">جلود طبيعية</span>
+                <span class="tag-pill" id="t-art">جلود صناعية</span>
+            </div>
+        </div>
+
+        <div class="service-box">
+            <div class="service-icon">🛋️</div>
+            <h3 id="s2-t">هندسة التنجيد والتجديد</h3>
+            <p id="s2-d" style="font-size: 0.9rem; color: var(--text-gray); margin-top: 10px;">
+                نعيد تعريف الفخامة في أثاثك عبر تنجيد احترافي يجمع بين الراحة الهندسية والجمال.
+            </p>
+        </div>
+
+        <div class="service-box">
+            <div class="service-icon">✨</div>
+            <h3 id="s3-t">ترميم المقتنيات الجلدية</h3>
+            <p id="s3-d" style="font-size: 0.9rem; color: var(--text-gray); margin-top: 10px;">
+                تقنيات متقدمة لإصلاح التشققات والبهتان وإعادة الجلد لحالته الأولى.
+            </p>
+        </div>
+
+        <!-- لماذا نحن -->
+        <h2 class="section-title" id="title-why">لماذا يختارنا الخبراء؟</h2>
+        <ul style="list-style: none; padding-right: 10px;" id="why-list">
+            <li style="margin-bottom: 15px;">💎 <b>دقة متناهية:</b> نعتني بأدق التفاصيل في الخياطة والتشطيب.</li>
+            <li style="margin-bottom: 15px;">🌍 <b>مصادر عالمية:</b> نتعامل مع أفضل المدابغ حول العالم.</li>
+            <li style="margin-bottom: 15px;">⏱️ <b>التزام بالوقت:</b> تسليم المشاريع في مواعيدها المحددة.</li>
+        </ul>
+
+        <!-- شريط متحرك -->
+        <div class="marquee">
+            <div class="marquee-inner" id="marquee-text">
+                <span class="m-text">تجهيز فنادق</span>
+                <span class="m-text">تأثيث مطاعم</span>
+                <span class="m-text">تنجيد يخت</span>
+                <span class="m-text">مقاعد طائرات</span>
+                <span class="m-text">سيارات فاخرة</span>
+            </div>
+        </div>
+
+        <!-- الأسئلة الشائعة -->
+        <h2 class="section-title" id="title-faq">أسئلة يتكرر طرحها</h2>
+        <div class="faq-container" id="faq-list">
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q"><span id="q1">هل يوجد ضمان على التنجيد؟</span> <span>+</span></div>
+                <div class="faq-a" id="a1">نعم، نقدم ضماناً يصل إلى 5 سنوات على جودة التنفيذ ونوعية الجلود المستخدمة.</div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-q"><span id="q2">هل توفرون عينات قبل العمل؟</span> <span>+</span></div>
+                <div class="faq-a" id="a2">بالتأكيد، يمكنكم زيارة المعرض أو نرسل لكم مندوباً مع كتالوج العينات الطبيعية والصناعية.</div>
+            </div>
+        </div>
+
+        <!-- التواصل -->
+        <div class="cta-container">
+            <a href="https://wa.me/966508483130" class="btn btn-gold" id="btn-wa">💬 تواصل عبر الواتساب</a>
+            <a href="tel:0508483130" class="btn btn-outline" id="btn-call">📞 اتصال هاتفي</a>
+            <a href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:;صالح;;;%0ATEL;TYPE=CELL:0508483130%0AEND:VCARD" download class="btn btn-outline" id="btn-save">👤 حفظ جهة الاتصال</a>
+        </div>
+
+        <footer id="footer-text">جميع الحقوق محفوظة © لصالح - خبير الجلود 2026</footer>
     </div>
-
-    <div class="card">
-        <div class="card-h"><div class="icon">🛋️</div><h3 id="s2-t">تنجيد وتحديث الأثاث</h3></div>
-        <p id="s2-d" style="font-size: 0.9rem; color: var(--gray);">إعادة إحياء الأثاث بلمسات احترافية تضمن الراحة والمظهر العصري.</p>
-    </div>
-
-    <div class="marquee"><div class="m-content" id="mq">فنادق • مطاعم • مكاتب • سيارات • قصور • صالونات</div></div>
-
-    <a href="https://wa.me/966508483130" class="btn-main" id="b-main">💬 تواصل معنا الآن</a>
-
-    <footer id="foot">صالح للجلود والتنجيد &copy; 2026</footer>
 
     <script>
-        const langData = {
+        const translations = {
             ar: {
-                dir: 'rtl', name: 'صالح', exp: 'خبرة أكثر من 20 سنة', sub: 'نجمع بين الخبرة العريقة وأحدث تقنيات التنجيد',
-                st1: 'عميل سعيد', st2: 'سنة خبرة', st3: 'ضمان جودة',
-                s1t: 'توريد الجلود الفاخرة', s1d: 'نوفر أفضل أنواع الجلود المختارة بعناية للمشاريع الكبرى.',
-                t1: '✅ جلود طبيعية', t2: '✅ جلود صناعية',
-                s2t: 'تنجيد وتحديث الأثاث', s2d: 'إعادة إحياء الأثاث بلمسات احترافية تضمن الراحة والمظهر العصري.',
-                mq: 'فنادق • مطاعم • مكاتب • سيارات • قصور • صالونات',
-                bm: '💬 تواصل معنا الآن', f: 'صالح للجلود والتنجيد © 2026'
+                dir: 'rtl', badge: 'خبرة تتجاوز 20 عاماً', name: 'صالح', sub: 'المرجع الأول لحلول الجلود الفاخرة وتجهيز المنشآت',
+                st1: 'عميل سعيد', st2: 'عام من العطاء', st3: 'جودة مضمونة',
+                t_serv: 'خدماتنا النخبوية', s1t: 'توريد الجلود الفاخرة', s1d: 'متخصصون في توريد أفضل الجلود العالمية للمشاريع الكبرى والفنادق والقصور.',
+                tn: 'جلود طبيعية', ta: 'جلود صناعية', s2t: 'هندسة التنجيد والتجديد', s2d: 'نعيد تعريف الفخامة في أثاثك عبر تنجيد احترافي يجمع بين الراحة والجمال.',
+                s3t: 'ترميم المقتنيات الجلدية', s3d: 'تقنيات متقدمة لإصلاح التشققات والبهتان وإعادة الجلد لحالته الأولى.',
+                t_why: 'لماذا يختارنا الخبراء؟', why_l: '<li style="margin-bottom:15px;">💎 <b>دقة متناهية:</b> نعتني بأدق التفاصيل.</li><li style="margin-bottom:15px;">🌍 <b>مصادر عالمية:</b> أفضل المدابغ.</li>',
+                mq: 'تجهيز فنادق • تأثيث مطاعم • تنجيد يخت • سيارات فاخرة', t_faq: 'أسئلة يتكرر طرحها',
+                q1: 'هل يوجد ضمان؟', a1: 'نعم، ضمان يصل لـ 5 سنوات.', q2: 'هل توفرون عينات؟', a2: 'نعم، نوفر عينات طبيعية وصناعية.',
+                b_wa: '💬 تواصل عبر الواتساب', b_ca: '📞 اتصال هاتفي', b_sa: '👤 حفظ الرقم', f: 'جميع الحقوق محفوظة © لصالح 2026'
             },
             en: {
-                dir: 'ltr', name: 'Saleh', exp: '20+ Years of Experience', sub: 'Expertise in traditional & modern upholstery techniques',
-                st1: 'Happy Clients', st2: 'Years Exp', st3: 'Quality Guarantee',
-                s1t: 'Premium Leather Supply', s1d: 'Providing the finest leather materials for major projects.',
-                t1: '✅ Natural Leather', t2: '✅ Artificial Leather',
-                s2t: 'Upholstery & Renovation', s2d: 'Reviving furniture with professional touches and modern style.',
-                mq: 'Hotels • Restaurants • Offices • Cars • Palaces • Salons',
-                bm: '💬 Contact Us Now', f: 'Saleh Leather & Upholstery © 2026'
+                dir: 'ltr', badge: 'Over 20 Years of Experience', name: 'Saleh', sub: 'The Leading Reference for Premium Leather Solutions',
+                st1: 'Happy Clients', st2: 'Years of Service', st3: 'Guaranteed Quality',
+                t_serv: 'Elite Services', s1t: 'Premium Leather Supply', s1d: 'Specialized in supplying global leathers for mega projects and hotels.',
+                tn: 'Natural Leather', ta: 'Artificial Leather', s2t: 'Upholstery Engineering', s2d: 'Redefining luxury through professional upholstery combining comfort and beauty.',
+                s3t: 'Leather Restoration', s3d: 'Advanced techniques to repair cracks and fading, returning leather to its original state.',
+                t_why: 'Why Experts Choose Us?', why_l: '<li style="margin-bottom:15px;">💎 <b>Extreme Precision:</b> We care for the smallest details.</li><li style="margin-bottom:15px;">🌍 <b>Global Sourcing:</b> Best tanneries worldwide.</li>',
+                mq: 'Hotel Projects • Restaurant Furniture • Yacht Upholstery • Luxury Cars', t_faq: 'Frequently Asked Questions',
+                q1: 'Is there a warranty?', a1: 'Yes, we provide up to 5 years warranty on quality and materials.', q2: 'Do you provide samples?', a2: 'Certainly, we can send a representative with our full sample catalog.',
+                b_wa: '💬 WhatsApp Us', b_ca: '📞 Call Now', b_sa: '👤 Save Contact', f: 'All Rights Reserved © Saleh Leather Expert 2026'
             },
             ur: {
-                dir: 'rtl', name: 'صالح', exp: '20 سال سے زیادہ کا تجربہ', sub: 'قدیم مہارت اور جدید ترین ٹیکنالوجی کا امتزاج',
-                st1: 'خوش گاہک', st2: 'سال کا تجربہ', st3: 'کوالٹی گارنٹی',
-                s1t: 'اعلیٰ چمڑے کی فراہمی', s1d: 'بڑے منصوبوں کے لیے بہترین چمڑے کی فراہمی۔',
-                t1: '✅ قدرتی چمڑا', t2: '✅ مصنوعی چمڑا',
-                s2t: 'صوفہ سازی اور مرمت', s2d: 'آرام اور جدید ڈیزائن کے ساتھ فرنیچر کی تجدید۔',
-                mq: 'ہوٹل • ریسٹورنٹ • دفاتر • گاڑیاں • محلات • سیلون',
-                bm: '💬 ابھی رابطہ کریں', f: 'صالح لیدر اینڈ اپہولسٹری © 2026'
+                dir: 'rtl', badge: '20 سال سے زیادہ کا تجربہ', name: 'صالح', sub: 'اعلیٰ معیار کے چمڑے اور فرنشننگ کے ماہر',
+                st1: 'خوش گاہک', st2: 'خدمت کے سال', st3: 'ضمانت شدہ معیار',
+                t_serv: 'ہماری خدمات', s1t: 'اعلیٰ چمڑے کی فراہمی', s1d: 'بڑے منصوبوں اور ہوٹلوں کے لیے بہترین عالمی چمڑے کی فراہمی۔',
+                tn: 'قدرتی چمڑا', ta: 'مصنوعی چمڑا', s2t: 'صوفہ سازی اور ڈیزائن', s2d: 'آرام اور خوبصورتی کے ساتھ فرنیچر کی جدید انداز میں تجدید۔',
+                s3t: 'چمڑے کی مرمت', s3d: 'چمڑے کی دراڑوں اور رنگت کو ٹھیک کرنے کی جدید تکنیک۔',
+                t_why: 'ماہرین ہمیں کیوں منتخب کرتے ہیں؟', why_l: '<li style="margin-bottom:15px;">💎 <b>انتہائی درستگی:</b> ہم چھوٹی تفصیلات کا خیال رکھتے ہیں۔</li><li style="margin-bottom:15px;">🌍 <b>عالمی ذرائع:</b> بہترین ٹینریز۔</li>',
+                mq: 'ہوٹل پروجیکٹس • ریسٹورنٹ فرنیچر • لگژری کاریں • محلات', t_faq: 'عام سوالات',
+                q1: 'کیا کوئی وارنٹی ہے؟', a1: 'جی ہاں، ہم معیار پر 5 سال تک کی وارنٹی دیتے ہیں۔', q2: 'کیا آپ نمونے فراہم کرتے ہیں؟', a2: 'جی ہاں، ہم نمونوں کا مکمل کیٹلاگ فراہم کر سکتے ہیں۔',
+                b_wa: '💬 واٹس ایپ پر رابطہ کریں', b_ca: '📞 ابھی کال کریں', b_sa: '👤 نمبر محفوظ کریں', f: 'جملہ حقوق محفوظ ہیں © صالح 2026'
             }
         };
 
-        function updateLang(l) {
-            const d = langData[l];
+        function changeLanguage(lang) {
+            const d = translations[lang];
             document.documentElement.dir = d.dir;
-            document.getElementById('h-name').textContent = d.name;
-            document.getElementById('h-exp').textContent = d.exp;
-            document.getElementById('h-sub').textContent = d.sub;
-            document.getElementById('st1').textContent = d.st1;
-            document.getElementById('st2').textContent = d.st2;
-            document.getElementById('st3').textContent = d.st3;
+            document.getElementById('exp-badge').textContent = d.badge;
+            document.getElementById('main-name').textContent = d.name;
+            document.getElementById('main-sub').textContent = d.sub;
+            document.getElementById('st-1').textContent = d.st1;
+            document.getElementById('st-2').textContent = d.st2;
+            document.getElementById('st-3').textContent = d.st3;
+            document.getElementById('title-services').textContent = d.t_serv;
             document.getElementById('s1-t').textContent = d.s1t;
             document.getElementById('s1-d').textContent = d.s1d;
-            document.getElementById('t1').textContent = d.t1;
-            document.getElementById('t2').textContent = d.t2;
+            document.getElementById('t-nat').textContent = d.tn;
+            document.getElementById('t-art').textContent = d.ta;
             document.getElementById('s2-t').textContent = d.s2t;
             document.getElementById('s2-d').textContent = d.s2d;
-            document.getElementById('mq').textContent = d.mq;
-            document.getElementById('b-main').textContent = d.bm;
-            document.getElementById('foot').innerHTML = d.f;
-            
-            document.querySelectorAll('.l-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('s3-t').textContent = d.s3t;
+            document.getElementById('s3-d').textContent = d.s3d;
+            document.getElementById('title-why').textContent = d.t_why;
+            document.getElementById('why-list').innerHTML = d.why_l;
+            document.getElementById('marquee-text').innerHTML = `<span class="m-text">${d.mq}</span>`;
+            document.getElementById('title-faq').textContent = d.t_faq;
+            document.getElementById('q1').textContent = d.q1;
+            document.getElementById('a1').textContent = d.a1;
+            document.getElementById('q2').textContent = d.q2;
+            document.getElementById('a2').textContent = d.a2;
+            document.getElementById('btn-wa').textContent = d.b_wa;
+            document.getElementById('btn-call').textContent = d.b_ca;
+            document.getElementById('btn-save').textContent = d.b_sa;
+            document.getElementById('footer-text').textContent = d.f;
+
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
+        }
+
+        function toggleFaq(el) {
+            el.classList.toggle('active');
         }
     </script>
 </body>
