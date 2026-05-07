@@ -11,7 +11,6 @@
             --card-bg: #1a1a1a;
             --text-main: #ffffff;
             --text-gray: #a0a0a0;
-            --marquee-bg: rgba(255, 255, 255, 0.03);
         }
 
         [data-theme="light"] {
@@ -19,7 +18,6 @@
             --card-bg: #ffffff;
             --text-main: #1a1a1a;
             --text-gray: #555555;
-            --marquee-bg: rgba(0, 0, 0, 0.04);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; transition: all 0.3s ease; }
@@ -27,7 +25,7 @@
         body {
             background-color: var(--bg);
             color: var(--text-main);
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
@@ -37,54 +35,37 @@
             overflow-x: hidden;
         }
 
-        .theme-toggle {
-            position: absolute; top: 20px; left: 20px;
-            background: var(--card-bg); border: 1px solid var(--primary-gold);
-            color: var(--primary-gold); width: 45px; height: 45px;
-            border-radius: 50%; cursor: pointer; display: flex;
-            align-items: center; justify-content: center; font-size: 1.1rem;
-            z-index: 1000; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        /* مبدل اللغات */
+        .lang-switcher {
+            display: flex; gap: 8px; margin-bottom: 20px;
+            background: var(--card-bg); padding: 5px; border-radius: 12px;
+            border: 1px solid var(--primary-gold);
         }
+        .lang-btn {
+            background: none; border: none; color: var(--text-gray);
+            padding: 8px 12px; cursor: pointer; font-weight: bold; border-radius: 8px;
+        }
+        .lang-btn.active { background: var(--primary-gold); color: #000; }
 
-        .profile-header { text-align: center; margin-top: 50px; margin-bottom: 10px; width: 100%; max-width: 400px; }
+        .profile-header { text-align: center; margin-top: 20px; width: 100%; max-width: 400px; }
         .avatar {
-            width: 95px; height: 95px;
+            width: 90px; height: 90px;
             background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-gold) 100%);
-            border-radius: 50%; margin-bottom: 15px;
-            display: inline-flex; align-items: center; justify-content: center;
-            font-size: 2.8rem; color: #000; border: 3px solid var(--primary-gold); font-weight: bold;
+            border-radius: 50%; margin: 0 auto 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.5rem; color: #000; border: 3px solid var(--primary-gold); font-weight: bold;
         }
 
-        h1 { font-size: 1.7rem; margin: 0; letter-spacing: -0.5px; }
         .experience-badge { 
             display: inline-block; background: rgba(212, 175, 55, 0.15); 
-            color: var(--primary-gold); padding: 4px 12px; border-radius: 20px;
-            font-size: 0.85rem; font-weight: 700; margin-top: 10px; border: 1px solid var(--primary-gold);
-        }
-        .subtitle { color: var(--text-main); font-size: 0.95rem; margin-top: 12px; font-weight: 500; opacity: 0.8; }
-
-        .action-buttons {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
-            width: 100%; max-width: 400px; margin: 25px 0;
-        }
-
-        .secondary-btn {
-            background: var(--card-bg); border: 1.5px solid var(--primary-gold);
-            color: var(--text-main); padding: 14px; border-radius: 15px;
-            text-decoration: none; font-size: 0.9rem; font-weight: 700;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
-
-        .section-title {
-            text-align: right; width: 100%; max-width: 400px; font-size: 1.1rem;
-            color: var(--primary-gold); margin: 30px 0 15px 0; padding-right: 12px; border-right: 4px solid var(--primary-gold);
-            font-weight: 800;
+            color: var(--primary-gold); padding: 4px 15px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; border: 1px solid var(--primary-gold);
         }
 
         .service-card {
             background: var(--card-bg); border-radius: 20px; padding: 25px; margin-bottom: 15px;
             width: 100%; max-width: 400px; border: 1px solid rgba(212, 175, 55, 0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: inherit;
         }
 
         .service-header { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
@@ -94,118 +75,116 @@
             display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
         }
 
-        .service-info h3 { font-size: 1.15rem; margin: 0; font-weight: 700; }
-        .service-info p { font-size: 0.9rem; color: var(--text-gray); line-height: 1.7; margin: 8px 0 0 0; }
-        
-        .tag-container { display: flex; gap: 8px; margin-top: 10px; }
+        .tag-container { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
         .tag { font-size: 0.75rem; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 5px; border: 1px solid rgba(212, 175, 55, 0.3); }
-
-        .marquee-container {
-            width: 100vw; background: var(--marquee-bg); padding: 18px 0; margin: 25px 0;
-            overflow: hidden; border-top: 1px solid rgba(212, 175, 55, 0.1); border-bottom: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        .marquee-content { display: flex; white-space: nowrap; animation: marquee 25s linear infinite; }
-        .marquee-item { color: var(--text-main); font-size: 0.95rem; margin: 0 35px; display: flex; align-items: center; font-weight: 600; }
-        .marquee-item::after { content: "•"; color: var(--primary-gold); margin-right: 70px; }
-
-        @keyframes marquee { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
         .contact-btn {
             background: var(--primary-gold); color: #000; width: 100%; max-width: 400px;
-            padding: 20px; border-radius: 40px; text-decoration: none; font-weight: 900;
+            padding: 18px; border-radius: 40px; text-decoration: none; font-weight: 900;
             margin-top: 30px; display: flex; align-items: center; justify-content: center;
             gap: 12px; box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-            font-size: 1.1rem;
         }
 
-        footer { margin-top: 40px; font-size: 0.8rem; color: var(--text-gray); opacity: 0.8; font-weight: 500; }
+        footer { margin-top: 40px; font-size: 0.8rem; color: var(--text-gray); }
     </style>
 </head>
 <body data-theme="dark">
 
-    <button class="theme-toggle" id="themeToggle">🌙</button>
+    <!-- اختيار اللغة -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('ar')">عربي</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ur')">اردو</button>
+    </div>
 
     <div class="profile-header">
         <div class="avatar">ص</div>
-        <h1>صالح</h1>
-        <div class="experience-badge">خبرة أكثر من 20 سنة</div>
-        <p class="subtitle">نجمع بين الخبرة العريقة وأحدث تقنيات التنجيد</p>
+        <h1 id="name">صالح</h1>
+        <div class="experience-badge" id="exp">خبرة أكثر من 20 سنة</div>
+        <p class="subtitle" id="subtitle">نجمع بين الخبرة العريقة وأحدث تقنيات التنجيد</p>
     </div>
 
-    <div class="action-buttons">
-        <a href="https://www.google.com/maps?q=Riyadh" target="_blank" class="secondary-btn">
-            📍 موقعنا
-        </a>
-        <a href="data:text/vcard;charset=utf-8,BEGIN:VCARD%0AVERSION:3.0%0AN:;صالح;;;%0ATEL;TYPE=CELL:0508483130%0AEND:VCARD" download="صالح.vcf" class="secondary-btn">
-            👤 حفظ الرقم
-        </a>
+    <div style="margin: 25px 0; width: 100%; max-width: 400px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        <a href="https://wa.me/966508483130" class="contact-btn" style="margin:0; font-size: 0.9rem;" id="btn-save">حفظ الرقم</a>
+        <a href="https://www.google.com/maps" class="contact-btn" style="margin:0; font-size: 0.9rem; background: none; color: var(--text-main); border: 1px solid var(--primary-gold);" id="btn-loc">موقعنا</a>
     </div>
 
-    <div class="section-title">خدماتنا الاحترافية</div>
-    
     <div class="service-card">
         <div class="service-header">
             <div class="icon-box">📦</div>
-            <h3>توريد الجلود الفاخرة</h3>
+            <h3 id="s1-title">توريد الجلود الفاخرة</h3>
         </div>
-        <div class="service-info">
-            <p>نؤمن لك أفضل الخامات المختارة بعناية لتناسب كافة الاحتياجات التجارية والسكنية.</p>
-            <div class="tag-container">
-                <span class="tag">✅ جلود طبيعية</span>
-                <span class="tag">✅ جلود صناعية</span>
-            </div>
+        <p id="s1-desc" style="font-size: 0.9rem; color: var(--text-gray);">أفضل الخامات المختارة بعناية لتناسب كافة الاحتياجات.</p>
+        <div class="tag-container">
+            <span class="tag" id="tag-nat">✅ جلود طبيعية</span>
+            <span class="tag" id="tag-art">✅ جلود صناعية</span>
         </div>
     </div>
 
     <div class="service-card">
         <div class="service-header">
             <div class="icon-box">🛋️</div>
-            <h3>تنجيد وتحديث الأثاث</h3>
+            <h3 id="s2-title">تنجيد وتحديث الأثاث</h3>
         </div>
-        <div class="service-info">
-            <p>إعادة إحياء الأطقم والمقاعد بلمسات احترافية تضمن الراحة والمظهر الجمالي الذي يدوم طويلاً.</p>
-        </div>
-    </div>
-
-    <div class="service-card">
-        <div class="service-header">
-            <div class="icon-box">✨</div>
-            <h3>صيانة وترميم الجلود</h3>
-        </div>
-        <div class="service-info">
-            <p>استعادة رونق قطعك الجلدية المتضررة ومعالجة العيوب بدقة متناهية تحت إشراف خبير.</p>
-        </div>
-    </div>
-
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <div class="marquee-item">المطاعم والكافيهات</div>
-            <div class="marquee-item">المكاتب والشركات</div>
-            <div class="marquee-item">الفنادق والمنتجعات</div>
-            <div class="marquee-item">المنازل والقصور</div>
-            <div class="marquee-item">تجهيز الصالونات</div>
-        </div>
+        <p id="s2-desc" style="font-size: 0.9rem; color: var(--text-gray);">إعادة إحياء الأطقم بلمسات احترافية تضمن الراحة والمظهر الجمالي.</p>
     </div>
 
     <a href="https://wa.me/966508483130" class="contact-btn">
-        <span>💬</span> اطلب استشارة أو عرض سعر
+        <span id="btn-main">💬 اطلب استشارة الآن</span>
     </a>
 
-    <footer>صالح للجلود والتنجيد &copy; 2026</footer>
+    <footer id="footer">صالح للجلود والتنجيد &copy; 2026</footer>
 
     <script>
-        const toggleBtn = document.getElementById('themeToggle');
-        const body = document.body;
-
-        toggleBtn.addEventListener('click', () => {
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.setAttribute('data-theme', 'light');
-                toggleBtn.textContent = '☀️';
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                toggleBtn.textContent = '🌙';
+        const content = {
+            ar: {
+                dir: 'rtl', name: 'صالح', exp: 'خبرة أكثر من 20 سنة', subtitle: 'نجمع بين الخبرة العريقة وأحدث تقنيات التنجيد',
+                s1t: 'توريد الجلود الفاخرة', s1d: 'أفضل الخامات المختارة بعناية لتناسب كافة الاحتياجات.',
+                tagN: '✅ جلود طبيعية', tagA: '✅ جلود صناعية',
+                s2t: 'تنجيد وتحديث الأثاث', s2d: 'إعادة إحياء الأطقم بلمسات احترافية تضمن الراحة والمظهر الجمالي.',
+                btnM: '💬 اطلب استشارة الآن', btnS: 'حفظ الرقم', btnL: 'موقعنا', foot: 'صالح للجلود والتنجيد © 2026'
+            },
+            en: {
+                dir: 'ltr', name: 'Saleh', exp: '20+ Years of Experience', subtitle: 'Combining heritage expertise with modern upholstery tech',
+                s1t: 'Premium Leather Supply', s1d: 'The finest materials carefully selected for all needs.',
+                tagN: '✅ Natural Leather', tagA: '✅ Artificial Leather',
+                s2t: 'Upholstery & Renovation', s2d: 'Reviving furniture with professional touches for comfort and style.',
+                btnM: '💬 Consultation Now', btnS: 'Save Contact', btnL: 'Location', foot: 'Saleh Leather & Upholstery © 2026'
+            },
+            ur: {
+                dir: 'rtl', name: 'صالح', exp: '20 سال سے زیادہ کا تجربہ', subtitle: 'قدیم مہارت اور جدید ترین ٹیکنالوجی کا امتزاج',
+                s1t: 'اعلیٰ معیار کے چمڑے کی فراہمی', s1d: 'تمام ضروریات کے لیے احتیاط سے منتخب کردہ بہترین مواد۔',
+                tagN: '✅ قدرتی چمڑا', tagA: '✅ مصنوعی چمڑا',
+                s2t: 'صوفہ سازی اور مرمت', s2d: 'آرام اور خوبصورتی کے لیے پیشہ ورانہ مہارت کے ساتھ فرنیچر کی تجدید۔',
+                btnM: '💬 ابھی رابطہ کریں', btnS: 'نمبر محفوظ کریں', btnL: 'ہمارا پتہ', foot: 'صالح لیدر اینڈ اپہولسٹری © 2026'
             }
-        });
+        };
+
+        function setLang(lang) {
+            const data = content[lang];
+            document.documentElement.dir = data.dir;
+            document.getElementById('name').textContent = data.name;
+            document.getElementById('exp').textContent = data.exp;
+            document.getElementById('subtitle').textContent = data.subtitle;
+            document.getElementById('s1-title').textContent = data.s1t;
+            document.getElementById('s1-desc').textContent = data.s1d;
+            document.getElementById('tag-nat').textContent = data.tagN;
+            document.getElementById('tag-art').textContent = data.tagA;
+            document.getElementById('s2-title').textContent = data.s2t;
+            document.getElementById('s2-desc').textContent = data.s2d;
+            document.getElementById('btn-main').textContent = data.btnM;
+            document.getElementById('btn-save').textContent = data.btnS;
+            document.getElementById('btn-loc').textContent = data.btnL;
+            document.getElementById('footer').innerHTML = data.foot;
+
+            // تحديث الأزرار النشطة
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.textContent.toLowerCase().includes(lang) || (lang==='ar' && btn.textContent==='عربي') || (lang==='ur' && btn.textContent==='اردو')) {
+                    btn.classList.add('active');
+                }
+            });
+        }
     </script>
 </body>
 </html>
