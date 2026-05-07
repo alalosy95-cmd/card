@@ -5,185 +5,133 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صالح | خبير الجلود والتنجيد</title>
     <style>
-        :root {
-            --primary-gold: #D4AF37;
-            --bg: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --text-main: #ffffff;
-            --text-gray: #a0a0a0;
-        }
+        :root { --gold: #D4AF37; --bg: #0f0f0f; --card: #1a1a1a; --white: #ffffff; --gray: #a0a0a0; }
+        * { box-sizing: border-box; transition: all 0.3s ease; }
+        body { background: var(--bg); color: var(--white); font-family: sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        /* Language Switcher */
+        .lang-bar { display: flex; gap: 10px; margin-bottom: 30px; background: var(--card); padding: 5px; border-radius: 12px; border: 1px solid var(--gold); }
+        .l-btn { background: none; border: none; color: var(--gray); padding: 8px 15px; cursor: pointer; font-weight: bold; border-radius: 8px; }
+        .l-btn.active { background: var(--gold); color: #000; }
 
-        [data-theme="light"] {
-            --bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --text-main: #1a1a1a;
-            --text-gray: #555555;
-        }
+        .header { text-align: center; max-width: 400px; }
+        .avatar { width: 90px; height: 90px; background: linear-gradient(135deg, #1a1a1a, var(--gold)); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; color: #000; border: 3px solid var(--gold); }
+        .badge { background: rgba(212, 175, 55, 0.15); color: var(--gold); padding: 5px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; border: 1px solid var(--gold); display: inline-block; }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; transition: all 0.3s ease; }
+        /* Stats Section */
+        .stats { display: flex; justify-content: space-around; width: 100%; max-width: 400px; margin: 20px 0; background: var(--card); padding: 15px; border-radius: 15px; border: 1px solid rgba(212,175,55,0.1); }
+        .stat-item { text-align: center; }
+        .stat-num { display: block; color: var(--gold); font-weight: 900; font-size: 1.1rem; }
+        .stat-lab { font-size: 0.7rem; color: var(--gray); }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px 20px 60px 20px;
-            overflow-x: hidden;
-        }
+        .card { background: var(--card); border-radius: 20px; padding: 20px; margin-bottom: 15px; width: 100%; max-width: 400px; border: 1px solid rgba(212,175,55,0.2); }
+        .card-h { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+        .icon { background: rgba(212,175,55,0.1); color: var(--gold); min-width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+        
+        .tags { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+        .tag { font-size: 0.7rem; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 5px; border: 1px solid rgba(212,175,55,0.2); }
 
-        /* مبدل اللغات */
-        .lang-switcher {
-            display: flex; gap: 8px; margin-bottom: 20px;
-            background: var(--card-bg); padding: 5px; border-radius: 12px;
-            border: 1px solid var(--primary-gold);
-        }
-        .lang-btn {
-            background: none; border: none; color: var(--text-gray);
-            padding: 8px 12px; cursor: pointer; font-weight: bold; border-radius: 8px;
-        }
-        .lang-btn.active { background: var(--primary-gold); color: #000; }
+        .marquee { width: 100vw; background: rgba(212,175,55,0.05); padding: 15px 0; margin: 20px 0; overflow: hidden; white-space: nowrap; }
+        .m-content { display: inline-block; animation: scroll 20s linear infinite; }
+        @keyframes scroll { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
 
-        .profile-header { text-align: center; margin-top: 20px; width: 100%; max-width: 400px; }
-        .avatar {
-            width: 90px; height: 90px;
-            background: linear-gradient(135deg, var(--card-bg) 0%, var(--primary-gold) 100%);
-            border-radius: 50%; margin: 0 auto 15px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 2.5rem; color: #000; border: 3px solid var(--primary-gold); font-weight: bold;
-        }
-
-        .experience-badge { 
-            display: inline-block; background: rgba(212, 175, 55, 0.15); 
-            color: var(--primary-gold); padding: 4px 15px; border-radius: 20px;
-            font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; border: 1px solid var(--primary-gold);
-        }
-
-        .service-card {
-            background: var(--card-bg); border-radius: 20px; padding: 25px; margin-bottom: 15px;
-            width: 100%; max-width: 400px; border: 1px solid rgba(212, 175, 55, 0.2);
-            text-align: inherit;
-        }
-
-        .service-header { display: flex; align-items: center; gap: 15px; margin-bottom: 12px; }
-        .icon-box {
-            background: rgba(212, 175, 55, 0.12); color: var(--primary-gold);
-            min-width: 45px; height: 45px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
-        }
-
-        .tag-container { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-        .tag { font-size: 0.75rem; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 5px; border: 1px solid rgba(212, 175, 55, 0.3); }
-
-        .contact-btn {
-            background: var(--primary-gold); color: #000; width: 100%; max-width: 400px;
-            padding: 18px; border-radius: 40px; text-decoration: none; font-weight: 900;
-            margin-top: 30px; display: flex; align-items: center; justify-content: center;
-            gap: 12px; box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
-        }
-
-        footer { margin-top: 40px; font-size: 0.8rem; color: var(--text-gray); }
+        .btn-main { background: var(--gold); color: #000; width: 100%; max-width: 400px; padding: 18px; border-radius: 30px; text-decoration: none; font-weight: 900; text-align: center; margin-top: 20px; display: block; box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
+        footer { margin-top: 40px; font-size: 0.8rem; color: var(--gray); }
     </style>
 </head>
-<body data-theme="dark">
+<body>
 
-    <!-- اختيار اللغة -->
-    <div class="lang-switcher">
-        <button class="lang-btn active" onclick="setLang('ar')">عربي</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('ur')">اردو</button>
+    <div class="lang-bar">
+        <button class="l-btn active" onclick="updateLang('ar')">عربي</button>
+        <button class="l-btn" onclick="updateLang('en')">EN</button>
+        <button class="l-btn" onclick="updateLang('ur')">اردو</button>
     </div>
 
-    <div class="profile-header">
+    <div class="header">
         <div class="avatar">ص</div>
-        <h1 id="name">صالح</h1>
-        <div class="experience-badge" id="exp">خبرة أكثر من 20 سنة</div>
-        <p class="subtitle" id="subtitle">نجمع بين الخبرة العريقة وأحدث تقنيات التنجيد</p>
+        <h1 id="h-name">صالح</h1>
+        <div class="badge" id="h-exp">خبرة أكثر من 20 سنة</div>
+        <p id="h-sub" style="color: var(--gray); margin-top:10px;">نجمع بين الخبرة العريقة وأحدث تقنيات التنجيد</p>
     </div>
 
-    <div style="margin: 25px 0; width: 100%; max-width: 400px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-        <a href="https://wa.me/966508483130" class="contact-btn" style="margin:0; font-size: 0.9rem;" id="btn-save">حفظ الرقم</a>
-        <a href="https://www.google.com/maps" class="contact-btn" style="margin:0; font-size: 0.9rem; background: none; color: var(--text-main); border: 1px solid var(--primary-gold);" id="btn-loc">موقعنا</a>
+    <div class="stats">
+        <div class="stat-item"><span class="stat-num">+500</span><span class="stat-lab" id="st1">عميل سعيد</span></div>
+        <div class="stat-item"><span class="stat-num">20+</span><span class="stat-lab" id="st2">سنة خبرة</span></div>
+        <div class="stat-item"><span class="stat-num">100%</span><span class="stat-lab" id="st3">ضمان جودة</span></div>
     </div>
 
-    <div class="service-card">
-        <div class="service-header">
-            <div class="icon-box">📦</div>
-            <h3 id="s1-title">توريد الجلود الفاخرة</h3>
-        </div>
-        <p id="s1-desc" style="font-size: 0.9rem; color: var(--text-gray);">أفضل الخامات المختارة بعناية لتناسب كافة الاحتياجات.</p>
-        <div class="tag-container">
-            <span class="tag" id="tag-nat">✅ جلود طبيعية</span>
-            <span class="tag" id="tag-art">✅ جلود صناعية</span>
+    <div class="card">
+        <div class="card-h"><div class="icon">📦</div><h3 id="s1-t">توريد الجلود الفاخرة</h3></div>
+        <p id="s1-d" style="font-size: 0.9rem; color: var(--gray);">نوفر أفضل أنواع الجلود المختارة بعناية للمشاريع الكبرى.</p>
+        <div class="tags">
+            <span class="tag" id="t1">✅ جلود طبيعية</span>
+            <span class="tag" id="t2">✅ جلود صناعية</span>
         </div>
     </div>
 
-    <div class="service-card">
-        <div class="service-header">
-            <div class="icon-box">🛋️</div>
-            <h3 id="s2-title">تنجيد وتحديث الأثاث</h3>
-        </div>
-        <p id="s2-desc" style="font-size: 0.9rem; color: var(--text-gray);">إعادة إحياء الأطقم بلمسات احترافية تضمن الراحة والمظهر الجمالي.</p>
+    <div class="card">
+        <div class="card-h"><div class="icon">🛋️</div><h3 id="s2-t">تنجيد وتحديث الأثاث</h3></div>
+        <p id="s2-d" style="font-size: 0.9rem; color: var(--gray);">إعادة إحياء الأثاث بلمسات احترافية تضمن الراحة والمظهر العصري.</p>
     </div>
 
-    <a href="https://wa.me/966508483130" class="contact-btn">
-        <span id="btn-main">💬 اطلب استشارة الآن</span>
-    </a>
+    <div class="marquee"><div class="m-content" id="mq">فنادق • مطاعم • مكاتب • سيارات • قصور • صالونات</div></div>
 
-    <footer id="footer">صالح للجلود والتنجيد &copy; 2026</footer>
+    <a href="https://wa.me/966508483130" class="btn-main" id="b-main">💬 تواصل معنا الآن</a>
+
+    <footer id="foot">صالح للجلود والتنجيد &copy; 2026</footer>
 
     <script>
-        const content = {
+        const langData = {
             ar: {
-                dir: 'rtl', name: 'صالح', exp: 'خبرة أكثر من 20 سنة', subtitle: 'نجمع بين الخبرة العريقة وأحدث تقنيات التنجيد',
-                s1t: 'توريد الجلود الفاخرة', s1d: 'أفضل الخامات المختارة بعناية لتناسب كافة الاحتياجات.',
-                tagN: '✅ جلود طبيعية', tagA: '✅ جلود صناعية',
-                s2t: 'تنجيد وتحديث الأثاث', s2d: 'إعادة إحياء الأطقم بلمسات احترافية تضمن الراحة والمظهر الجمالي.',
-                btnM: '💬 اطلب استشارة الآن', btnS: 'حفظ الرقم', btnL: 'موقعنا', foot: 'صالح للجلود والتنجيد © 2026'
+                dir: 'rtl', name: 'صالح', exp: 'خبرة أكثر من 20 سنة', sub: 'نجمع بين الخبرة العريقة وأحدث تقنيات التنجيد',
+                st1: 'عميل سعيد', st2: 'سنة خبرة', st3: 'ضمان جودة',
+                s1t: 'توريد الجلود الفاخرة', s1d: 'نوفر أفضل أنواع الجلود المختارة بعناية للمشاريع الكبرى.',
+                t1: '✅ جلود طبيعية', t2: '✅ جلود صناعية',
+                s2t: 'تنجيد وتحديث الأثاث', s2d: 'إعادة إحياء الأثاث بلمسات احترافية تضمن الراحة والمظهر العصري.',
+                mq: 'فنادق • مطاعم • مكاتب • سيارات • قصور • صالونات',
+                bm: '💬 تواصل معنا الآن', f: 'صالح للجلود والتنجيد © 2026'
             },
             en: {
-                dir: 'ltr', name: 'Saleh', exp: '20+ Years of Experience', subtitle: 'Combining heritage expertise with modern upholstery tech',
-                s1t: 'Premium Leather Supply', s1d: 'The finest materials carefully selected for all needs.',
-                tagN: '✅ Natural Leather', tagA: '✅ Artificial Leather',
-                s2t: 'Upholstery & Renovation', s2d: 'Reviving furniture with professional touches for comfort and style.',
-                btnM: '💬 Consultation Now', btnS: 'Save Contact', btnL: 'Location', foot: 'Saleh Leather & Upholstery © 2026'
+                dir: 'ltr', name: 'Saleh', exp: '20+ Years of Experience', sub: 'Expertise in traditional & modern upholstery techniques',
+                st1: 'Happy Clients', st2: 'Years Exp', st3: 'Quality Guarantee',
+                s1t: 'Premium Leather Supply', s1d: 'Providing the finest leather materials for major projects.',
+                t1: '✅ Natural Leather', t2: '✅ Artificial Leather',
+                s2t: 'Upholstery & Renovation', s2d: 'Reviving furniture with professional touches and modern style.',
+                mq: 'Hotels • Restaurants • Offices • Cars • Palaces • Salons',
+                bm: '💬 Contact Us Now', f: 'Saleh Leather & Upholstery © 2026'
             },
             ur: {
-                dir: 'rtl', name: 'صالح', exp: '20 سال سے زیادہ کا تجربہ', subtitle: 'قدیم مہارت اور جدید ترین ٹیکنالوجی کا امتزاج',
-                s1t: 'اعلیٰ معیار کے چمڑے کی فراہمی', s1d: 'تمام ضروریات کے لیے احتیاط سے منتخب کردہ بہترین مواد۔',
-                tagN: '✅ قدرتی چمڑا', tagA: '✅ مصنوعی چمڑا',
-                s2t: 'صوفہ سازی اور مرمت', s2d: 'آرام اور خوبصورتی کے لیے پیشہ ورانہ مہارت کے ساتھ فرنیچر کی تجدید۔',
-                btnM: '💬 ابھی رابطہ کریں', btnS: 'نمبر محفوظ کریں', btnL: 'ہمارا پتہ', foot: 'صالح لیدر اینڈ اپہولسٹری © 2026'
+                dir: 'rtl', name: 'صالح', exp: '20 سال سے زیادہ کا تجربہ', sub: 'قدیم مہارت اور جدید ترین ٹیکنالوجی کا امتزاج',
+                st1: 'خوش گاہک', st2: 'سال کا تجربہ', st3: 'کوالٹی گارنٹی',
+                s1t: 'اعلیٰ چمڑے کی فراہمی', s1d: 'بڑے منصوبوں کے لیے بہترین چمڑے کی فراہمی۔',
+                t1: '✅ قدرتی چمڑا', t2: '✅ مصنوعی چمڑا',
+                s2t: 'صوفہ سازی اور مرمت', s2d: 'آرام اور جدید ڈیزائن کے ساتھ فرنیچر کی تجدید۔',
+                mq: 'ہوٹل • ریسٹورنٹ • دفاتر • گاڑیاں • محلات • سیلون',
+                bm: '💬 ابھی رابطہ کریں', f: 'صالح لیدر اینڈ اپہولسٹری © 2026'
             }
         };
 
-        function setLang(lang) {
-            const data = content[lang];
-            document.documentElement.dir = data.dir;
-            document.getElementById('name').textContent = data.name;
-            document.getElementById('exp').textContent = data.exp;
-            document.getElementById('subtitle').textContent = data.subtitle;
-            document.getElementById('s1-title').textContent = data.s1t;
-            document.getElementById('s1-desc').textContent = data.s1d;
-            document.getElementById('tag-nat').textContent = data.tagN;
-            document.getElementById('tag-art').textContent = data.tagA;
-            document.getElementById('s2-title').textContent = data.s2t;
-            document.getElementById('s2-desc').textContent = data.s2d;
-            document.getElementById('btn-main').textContent = data.btnM;
-            document.getElementById('btn-save').textContent = data.btnS;
-            document.getElementById('btn-loc').textContent = data.btnL;
-            document.getElementById('footer').innerHTML = data.foot;
-
-            // تحديث الأزرار النشطة
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.textContent.toLowerCase().includes(lang) || (lang==='ar' && btn.textContent==='عربي') || (lang==='ur' && btn.textContent==='اردو')) {
-                    btn.classList.add('active');
-                }
-            });
+        function updateLang(l) {
+            const d = langData[l];
+            document.documentElement.dir = d.dir;
+            document.getElementById('h-name').textContent = d.name;
+            document.getElementById('h-exp').textContent = d.exp;
+            document.getElementById('h-sub').textContent = d.sub;
+            document.getElementById('st1').textContent = d.st1;
+            document.getElementById('st2').textContent = d.st2;
+            document.getElementById('st3').textContent = d.st3;
+            document.getElementById('s1-t').textContent = d.s1t;
+            document.getElementById('s1-d').textContent = d.s1d;
+            document.getElementById('t1').textContent = d.t1;
+            document.getElementById('t2').textContent = d.t2;
+            document.getElementById('s2-t').textContent = d.s2t;
+            document.getElementById('s2-d').textContent = d.s2d;
+            document.getElementById('mq').textContent = d.mq;
+            document.getElementById('b-main').textContent = d.bm;
+            document.getElementById('foot').innerHTML = d.f;
+            
+            document.querySelectorAll('.l-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
         }
     </script>
 </body>
