@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صالح | حلول الجلود والتنجيد</title>
+    <title>صالح | خبير الجلود والتنجيد</title>
     <style>
         :root {
             --primary-gold: #D4AF37;
@@ -56,7 +56,12 @@
         }
 
         h1 { font-size: 1.7rem; margin: 0; letter-spacing: -0.5px; }
-        .subtitle { color: var(--primary-gold); font-size: 0.95rem; margin-top: 8px; font-weight: 600; opacity: 0.9; }
+        .experience-badge { 
+            display: inline-block; background: rgba(212, 175, 55, 0.15); 
+            color: var(--primary-gold); padding: 4px 12px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 700; margin-top: 10px; border: 1px solid var(--primary-gold);
+        }
+        .subtitle { color: var(--text-main); font-size: 0.95rem; margin-top: 12px; font-weight: 500; opacity: 0.8; }
 
         .action-buttons {
             display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
@@ -91,16 +96,9 @@
 
         .service-info h3 { font-size: 1.15rem; margin: 0; font-weight: 700; }
         .service-info p { font-size: 0.9rem; color: var(--text-gray); line-height: 1.7; margin: 8px 0 0 0; }
-
-        .features-grid {
-            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px;
-            width: 100%; max-width: 400px; margin: 10px 0;
-        }
-        .feature-item {
-            background: var(--card-bg); padding: 15px 10px; border-radius: 12px;
-            text-align: center; font-size: 0.75rem; border: 1px solid rgba(212, 175, 55, 0.1);
-        }
-        .feature-item span { display: block; font-size: 1.3rem; margin-bottom: 5px; }
+        
+        .tag-container { display: flex; gap: 8px; margin-top: 10px; }
+        .tag { font-size: 0.75rem; background: rgba(255,255,255,0.05); padding: 4px 8px; border-radius: 5px; border: 1px solid rgba(212, 175, 55, 0.3); }
 
         .marquee-container {
             width: 100vw; background: var(--marquee-bg); padding: 18px 0; margin: 25px 0;
@@ -120,9 +118,6 @@
             font-size: 1.1rem;
         }
 
-        .social-links { display: flex; gap: 20px; margin-top: 40px; }
-        .social-links a { color: var(--text-gray); font-size: 1.4rem; text-decoration: none; }
-
         footer { margin-top: 40px; font-size: 0.8rem; color: var(--text-gray); opacity: 0.8; font-weight: 500; }
     </style>
 </head>
@@ -133,7 +128,8 @@
     <div class="profile-header">
         <div class="avatar">ص</div>
         <h1>صالح</h1>
-        <p class="subtitle">حلول الجلود الفاخرة وتجهيز المنشآت</p>
+        <div class="experience-badge">خبرة أكثر من 20 سنة</div>
+        <p class="subtitle">نجمع بين الخبرة العريقة وأحدث تقنيات التنجيد</p>
     </div>
 
     <div class="action-buttons">
@@ -145,21 +141,19 @@
         </a>
     </div>
 
-    <div class="features-grid">
-        <div class="feature-item"><span>🚀</span>سرعة في التنفيذ</div>
-        <div class="feature-item"><span>🛡️</span>ضمان الجودة</div>
-        <div class="feature-item"><span>💎</span>خامات نادرة</div>
-    </div>
-
     <div class="section-title">خدماتنا الاحترافية</div>
     
     <div class="service-card">
         <div class="service-header">
-            <div class="icon-box">📐</div>
+            <div class="icon-box">📦</div>
             <h3>توريد الجلود الفاخرة</h3>
         </div>
         <div class="service-info">
-            <p>نوفر تشكيلة واسعة من الجلود المقاومة للاستخدام الشاق بمواصفات عالمية تناسب المطاعم والفنادق والسيارات.</p>
+            <p>نؤمن لك أفضل الخامات المختارة بعناية لتناسب كافة الاحتياجات التجارية والسكنية.</p>
+            <div class="tag-container">
+                <span class="tag">✅ جلود طبيعية</span>
+                <span class="tag">✅ جلود صناعية</span>
+            </div>
         </div>
     </div>
 
@@ -169,7 +163,7 @@
             <h3>تنجيد وتحديث الأثاث</h3>
         </div>
         <div class="service-info">
-            <p>إعادة إحياء الأطقم بلمسات عصرية مع استخدام أفضل أنواع الإسفنج والخامات لراحة تدوم طويلاً.</p>
+            <p>إعادة إحياء الأطقم والمقاعد بلمسات احترافية تضمن الراحة والمظهر الجمالي الذي يدوم طويلاً.</p>
         </div>
     </div>
 
@@ -179,18 +173,15 @@
             <h3>صيانة وترميم الجلود</h3>
         </div>
         <div class="service-info">
-            <p>معالجة الخدوش والبهتان للقطع الجلدية المتضررة وإعادتها لحالتها الأصلية بأعلى دقة احترافية.</p>
+            <p>استعادة رونق قطعك الجلدية المتضررة ومعالجة العيوب بدقة متناهية تحت إشراف خبير.</p>
         </div>
     </div>
-
-    <div class="section-title">قطاعات نخدمها</div>
 
     <div class="marquee-container">
         <div class="marquee-content">
             <div class="marquee-item">المطاعم والكافيهات</div>
             <div class="marquee-item">المكاتب والشركات</div>
             <div class="marquee-item">الفنادق والمنتجعات</div>
-            <div class="marquee-item">الصالات الرياضية</div>
             <div class="marquee-item">المنازل والقصور</div>
             <div class="marquee-item">تجهيز الصالونات</div>
         </div>
